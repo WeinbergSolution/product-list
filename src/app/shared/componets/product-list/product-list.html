@@ -1,1 +1,38 @@
-<p>product-list works!</p>
+<section class="product-table-wrapper">
+  <table class="product-table" role="grid" aria-describedby="Produktliste">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Beschreibung</th>
+        <th>Bestand</th>
+        <th>Preis(€)</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of list; track item.name; let index = $index) {
+        <tr role="link">
+          <td>{{ item.name }}</td>
+          <td>{{ item.specs }}</td>
+          <td>
+            <span class="badge ok">{{ item.stock }}</span>
+          </td>
+          <td class="price">
+            @switch (true) {
+              @case (item.price > 1000000) {
+                {{ item.price / 1000000 }}Mio
+              }
+              @case (item.price > 1000) {
+                {{ item.price / 1000 }}k
+              }
+              @default {
+                {{ item.price }}
+              }
+            }
+          </td>
+          <td><a class="btn--view" aria-label="Details anzeigen"></a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

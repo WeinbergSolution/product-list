@@ -6,4 +6,13 @@ import { Component } from '@angular/core';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {}
+export class Header {
+  btn_text = 'Neues Produkt';
+  path = '';
+  ngOnInit() {
+    this.path = '';
+    if (this.path == 'detail') {
+      this.btn_text = 'Zurück zur Liste';
+    }
+  }
+}
